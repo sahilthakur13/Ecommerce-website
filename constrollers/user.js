@@ -8,9 +8,8 @@ async function handleUserSignup(req,res){
         password,
         role,
     });
-    const token = setUser(User);
-    res.cookie('token',token);
-    return res.redirect('/home');
+    
+    return res.redirect('/login');
 }
 
 async function handleUserLogin(req,res){
@@ -21,7 +20,7 @@ async function handleUserLogin(req,res){
         error:'Invalid username and password'
     });
     const token = setUser(user);
-    res.cookie('token',token);
+    res.cookie('token',token ,{expires:new Date(Date.now() + 2628000000 ),httpOnly:true});
     return res.redirect('/home');
 }
 
