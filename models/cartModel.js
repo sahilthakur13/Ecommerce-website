@@ -1,4 +1,4 @@
-const express = require('express')
+
 const mongoose =  require('mongoose');
 
 const cartSchema = mongoose.Schema({
@@ -14,14 +14,14 @@ const cartSchema = mongoose.Schema({
     type: String,
     required:true,
    },
-   desc:{
-    type: String,
-    required:true,
-   },
    category:{
     type:String,
     required: true,
    },
+   createdBy:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'products',
+   }
 },
 {timestramps: true})
 

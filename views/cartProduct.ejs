@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>products</title>
+    <link rel="stylesheet" href="./Assests/stylesheet/allproduct.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <style>
+            .box{
+
+                box-shadow: 1px 0px 7px black;
+            }
+
+html,body{
+    height: 100%;
+    width: 100%;
+}
+#box{
+    height: 400px;
+    width: 325px;
+    background-color: red;
+}
+#img{
+    height: 250px;
+    width: 270px;
+    object-fit: contain;
+    overflow: hidden;
+}
+#card{
+    height:450px !important;
+    width: auto;
+}
+
+        </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+           <div class="d-flex gap-5">
+            <h3>My Cart</h3>
+            <h3 class="bg-white "> <a class="nav-link text-dark" href="/home">HOME</a></h3>
+           </div>
+        </div>
+    </div>
+    <div class="row">
+        <% if (cart.length> 0) { %>
+            <% cart.forEach((product,index) => { %>
+                <div class="col-sm-3">
+                    <div class="box p-2 m-2 rounded-1">
+                        <div class="img-fluid">
+                            
+                            <img src="<%= product.imageurl %>" style="height: 250px; width: 280px;" id="img" alt="<%= product.name %>">
+                        </div>
+                        <div id="box-details">
+                            <h5 class="card-title">
+                                <%= product.name %>
+                            </h5>
+                            <h5 class="card-text text-success">$<%=product.price %>
+                            </h5>
+                            <h6 class="description">
+                                <%=product.desc %>
+                            </h6>
+                            <h6 class="catagory">Catagory:- <%= product.category %></h6>
+                            <h6 class="Quantity">Quantity <%=  %></h6>
+
+                            <button class="btn btn-danger"> <a class="nav-link text-white"
+                                    href="/cartRouter/delete/<%= product._id %>">remove</a></button>  
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>  
+         <% } else { %>
+          No Product in the Cart
+        <% } %>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -28,13 +28,15 @@
                     <option value="">all Products</option>
                     <option value="Electronics">Electronics</option>
                     <option value="Shoes">Shoes</option>
+                    <option value="Clothes">Clothes</option>
+                    <option value="Watches">Watches</option>
                 </select>
             </form>
 
             <div class="row">
                 <% if (allProducts.length> 0) { %>
                     <%allProducts.forEach(product=> { %>
-                        <div class="col-sm-3">
+                        <div class="col-sm-3 p-3">
                             <div class="card" id="card">
                                 <div class="overflow-hidden">
                                     <img  src="<%=product.imageurl %>" id="img" class="card-img-top img-fluid"
@@ -51,11 +53,16 @@
                                     </h6>
                                     <h6 class="catagory">Catagory:- <%= product.category %>
                                     </h6>
+                                   <div class="d-flex gap-2">
+                                   <% if (userRole == 'ADMIN') { %>
                                     <button class="btn btn-info"> <a class="nav-link text-white"
-                                            href="/allProducts/edit/<%= product._id %>">Edit</a></button>
-                                    <button class="btn btn-danger"> <a class="nav-link text-white"
-                                            href="/allProducts/delete/<%= product._id %>">Delete</a></button>
-                                    <a href="/allProducts/addToCart"<%= product._id %> class="btn btn-primary">Add to Cart</a>
+                                        href="/allProducts/edit/<%= product._id %>">Edit</a></button>
+                                <button class="btn btn-danger"> <a class="nav-link text-white"
+                                        href="/allProducts/delete/<%= product._id %>">Delete</a></button>
+                                   <% } %>
+                                        
+                                    <a href="/cartRouter/<%= product._id %>" class="btn btn-primary">Add to Cart</a> 
+                                   </div>  
                                 </div>
                             </div>
                         </div>
